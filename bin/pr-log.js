@@ -19,6 +19,7 @@ program
     .option('--sloppy', 'Skip ensuring clean local git state.')
     .option('--trace', 'Show stack traces for any error.')
     .option('--cherry-pick', 'Use cherry-picks instead of PR merges.')
+    .option('--since-prerelease', 'Only consider prereleases in the "last changelog" calculation.')
     .usage('<version-number>')
     .parse(process.argv);
 
@@ -26,8 +27,8 @@ program
 const { GH_TOKEN } = process.env;
 
 const changelogPath = path.join(process.cwd(), 'CHANGELOG.md');
-const { sloppy, cherryPick } = program;
-const options = { sloppy, cherryPick, changelogPath };
+const { sloppy, cherryPick, sincePrerelease } = program;
+const options = { sloppy, cherryPick, sincePrerelease, changelogPath };
 const findRemoteAlias = findRemoteAliasFactory({ git });
 const githubClient = createGithubClient();
 if (GH_TOKEN) {
