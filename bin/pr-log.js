@@ -18,11 +18,12 @@ program
     .version(config.version)
     .option('--sloppy', 'Skip ensuring clean local git state.')
     .option('--trace', 'Show stack traces for any error.')
+    .option('--since-prerelease', 'Only consider prereleases in the "last changelog" calculation.')
     .usage('<version-number>')
     .parse(process.argv);
 
 const changelogPath = path.join(process.cwd(), 'CHANGELOG.md');
-const options = { sloppy: program.sloppy, changelogPath };
+const options = { sloppy: program.sloppy, changelogPath, sincePrerelease: program.sincePrerelease };
 const findRemoteAlias = findRemoteAliasFactory({ git });
 const githubClient = createGithubClient();
 const getMergedPullRequests = getMergedPullRequestsFactory({ githubClient, git, getPullRequestLabel });

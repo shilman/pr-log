@@ -138,6 +138,10 @@ The `--sloppy` option defaults to false. When set, it allows `pr-log` to generat
 
 When enabled this option outputs the stacktrace of an error additionally to the error message to `stderr`.
 
+#### --since-prerelease
+
+When enabled only consider prereleases in the last changelog calculation. For example, if you're releasing 4.1.0-alpha.2, you want to consider the merges that have occurred since 4.1.0-alpha.1. By default it only includes full releases in the calculation.
+
 ### Correct usage makes a clean and complete changelog
 
 If you want your changelog to be complete and clean you have to follow these rules:
